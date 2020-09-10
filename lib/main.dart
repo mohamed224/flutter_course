@@ -29,46 +29,69 @@ class MyHomePage extends StatelessWidget{
         title: Text('Flutter App'),
       ),
       body: Column(
-        children: transactions.map((tx) =>
-          Card(child: Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 15
-                ),
-                decoration: BoxDecoration(border: Border.all(color: Colors.purple , width: 2)),
-                padding: EdgeInsets.all(10),
-                child: Text(
-                    '\$${tx.amount}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0,
-                      color: Colors.purple
-                    ),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    tx.title,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold
+                  TextField(decoration: InputDecoration(labelText: 'Title'),),
+                  TextField(decoration: InputDecoration(labelText: 'Amount'),),
+                  FlatButton(
+                    child: Text('Add Transaction'),
+                    textColor: Colors.purple,
+                    onPressed: (){},
+                  )
+
+                ],
+              ),
+            ),
+          ),
+          Column(
+            children: transactions.map((tx) =>
+              Card(child: Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15
+                    ),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.purple , width: 2)),
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                        '\$${tx.amount}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.purple
+                        ),
                     ),
                   ),
-                  Text(
-                      DateFormat('yyyy/MM/dd').format(tx.date),
-                      style: TextStyle(
-                        color: Colors.grey
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        tx.title,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                        ),
                       ),
+                      Text(
+                          DateFormat('yyyy/MM/dd').format(tx.date),
+                          style: TextStyle(
+                            color: Colors.grey
+                          ),
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
-          ),
-          )).toList(),),
+              ),
+              )).toList(),),
+        ],
+      ),
     );
   }
 }
