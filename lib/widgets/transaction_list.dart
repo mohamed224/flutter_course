@@ -5,10 +5,8 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
 
-  List<Transaction> transactions = [
-    Transaction(id:'t1',title: 'New Shoes', amount: 69.5 , date: DateTime.now()),
-    Transaction(id:'t2',title: 'Weekly Groceries', amount: 78.5 , date: DateTime.now())
-  ];
+  final List<Transaction> transactions;
+  TransactionList(this.transactions);
   @override
   Widget build(BuildContext context) {
     return Column(
