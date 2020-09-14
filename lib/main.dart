@@ -26,7 +26,7 @@ class MyHomePage extends StatelessWidget{
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: UserTransaction(),
+      body: SingleChildScrollView(child: UserTransaction()),
       );
   }
 }
