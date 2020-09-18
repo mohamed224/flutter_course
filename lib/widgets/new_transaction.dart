@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
-
   final Function addTx;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
@@ -24,15 +23,16 @@ class NewTransaction extends StatelessWidget {
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
-              controller: amountController,),
+              controller: amountController,
+            ),
             FlatButton(
               child: Text('Add Transaction'),
               textColor: Colors.purple,
-              onPressed: (){
-               addTx(titleController.text , double.parse(amountController.text));
+              onPressed: () {
+                addTx(
+                    titleController.text, double.parse(amountController.text));
               },
             )
-
           ],
         ),
       ),
