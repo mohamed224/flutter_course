@@ -14,8 +14,7 @@ class NewTransaction extends StatelessWidget {
     if(enteredTitle.isEmpty || enteredAmount<=0){
       return;
     }
-    addTx(
-        enteredTitle, enteredAmount);
+    addTx(enteredTitle, enteredAmount);
   }
   @override
   Widget build(BuildContext context) {
