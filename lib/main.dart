@@ -13,7 +13,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+              )
+        ),
+        appBarTheme: AppBarTheme(textTheme: ThemeData.light().textTheme.copyWith(
+          title: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold
+          )
+        ))
+      ),
       home: MyHomePage(),
     );
   }
@@ -27,9 +46,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> _userTransactions = [
-    Transaction(id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
+   /* Transaction(id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
     Transaction(id: 't2', title: 'Weekly Groceries', amount: 78.5, date: DateTime.now()),
-    Transaction(id: 't3', title: 'New Bag', amount: 58, date: DateTime.now()),
+    Transaction(id: 't3', title: 'New Bag', amount: 58, date: DateTime.now()),*/
   ];
 
   void _addNewTransaction(String titleValue, double amountValue) {
@@ -58,7 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Personal Expenses'
+        ,),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -66,7 +86,22 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body: SingleChildScrollView(child: TransactionList(_userTransactions)),
+      body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                width: double.infinity,
+                child: Card(
+                  color: Colors.blue,
+                  child: Text('Chart'),
+                  elevation: 5,
+                ),
+              ),
+              TransactionList(_userTransactions),
+            ],
+          )
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
