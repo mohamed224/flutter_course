@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+
 import './widgets/chart.dart';
-import './widgets/transaction_list.dart';
-
 import './widgets/new_transaction.dart';
-
+import './widgets/transaction_list.dart';
 import 'models/transaction.dart';
 
 void main() {
@@ -19,27 +18,17 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.purple,
           accentColor: Colors.amber,
           fontFamily: 'Quicksand',
-          textTheme: ThemeData
-              .light()
-              .textTheme
-              .copyWith(
+          textTheme: ThemeData.light().textTheme.copyWith(
               title: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 18,
-                  fontWeight: FontWeight.bold
-              )
-          ),
-          appBarTheme: AppBarTheme(textTheme: ThemeData
-              .light()
-              .textTheme
-              .copyWith(
-              title: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-              )
-          ))
-      ),
+                  fontWeight: FontWeight.bold)),
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                  title: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)))),
       home: MyHomePage(),
     );
   }
@@ -51,7 +40,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   List<Transaction> _userTransactions = [
     /* Transaction(id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
     Transaction(id: 't2', title: 'Weekly Groceries', amount: 78.5, date: DateTime.now()),
@@ -69,15 +57,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  List<Transaction> get _recentTransactions{
+  List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
-      DateTime.now().subtract
-        (Duration(days: 7),
-      ),
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
       );
-  }).toList();
+    }).toList();
   }
+
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
@@ -94,8 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Personal Expenses'
-          ,),
+        title: Text(
+          'Personal Expenses',
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -105,13 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Chart(_recentTransactions),
-              TransactionList(_userTransactions),
-            ],
-          )
-      ),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Chart(_recentTransactions),
+          TransactionList(_userTransactions),
+        ],
+      )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
