@@ -15,23 +15,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-        fontFamily: 'Quicksand',
-        textTheme: ThemeData.light().textTheme.copyWith(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'Quicksand',
+          textTheme: ThemeData
+              .light()
+              .textTheme
+              .copyWith(
               title: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 18,
                   fontWeight: FontWeight.bold
               )
-        ),
-        appBarTheme: AppBarTheme(textTheme: ThemeData.light().textTheme.copyWith(
-          title: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          )
-        ))
+          ),
+          appBarTheme: AppBarTheme(textTheme: ThemeData
+              .light()
+              .textTheme
+              .copyWith(
+              title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+              )
+          ))
       ),
       home: MyHomePage(),
     );
@@ -46,7 +52,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> _userTransactions = [
-   /* Transaction(id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
+    /* Transaction(id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
     Transaction(id: 't2', title: 'Weekly Groceries', amount: 78.5, date: DateTime.now()),
     Transaction(id: 't3', title: 'New Bag', amount: 58, date: DateTime.now()),*/
   ];
@@ -61,13 +67,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _userTransactions.add(newTx);
     });
   }
+
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
         builder: (_) {
           return GestureDetector(
-            onTap: (){},
-              child: NewTransaction(_addNewTransaction),
+            onTap: () {},
+            child: NewTransaction(_addNewTransaction),
             behavior: HitTestBehavior.opaque,
           );
         });
@@ -78,11 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Personal Expenses'
-        ,),
+          ,),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: ()=>_startAddNewTransaction(context),
+            onPressed: () => _startAddNewTransaction(context),
           )
         ],
       ),
@@ -105,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: ()=>_startAddNewTransaction(context),
+        onPressed: () => _startAddNewTransaction(context),
       ),
     );
   }

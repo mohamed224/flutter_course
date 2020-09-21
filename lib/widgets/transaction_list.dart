@@ -15,13 +15,17 @@ class TransactionList extends StatelessWidget {
       height: 300,
       child: transactions.isEmpty ? Column(
         children: [
-          Text('No Transactions added yet', style: Theme.of(context).textTheme.title),
+          Text('No Transactions added yet', style: Theme
+              .of(context)
+              .textTheme
+              .title),
           SizedBox(
             height: 10,
           ),
           Container(
               height: 200,
-              child: Image.asset('assets/images/waiting.png', fit: BoxFit.cover,)
+              child: Image.asset(
+                'assets/images/waiting.png', fit: BoxFit.cover,)
           )
         ],
       ) : ListView.builder(
@@ -47,9 +51,12 @@ class TransactionList extends StatelessWidget {
                     children: [
                       Text(
                         transactions[index].title,
-                        style: Theme.of(context).textTheme.title,),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .title,),
                       Text(
-                        DateFormat('yyyy/MM/dd')
+                        DateFormat.yMMMMd()
                             .format(transactions[index].date),
                         style: TextStyle(color: Colors.grey),
                       )
