@@ -42,15 +42,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _showChart = false;
   List<Transaction> _userTransactions = [
-    Transaction(
-        id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Weekly Groceries',
-        amount: 78.5,
-        date: DateTime.now()),
-    Transaction(id: 't3', title: 'New Bag', amount: 58, date: DateTime.now()),
+    // Transaction(
+    //     id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
+    // Transaction(
+    //     id: 't2',
+    //     title: 'Weekly Groceries',
+    //     amount: 78.5,
+    //     date: DateTime.now()),
+    // Transaction(id: 't3', title: 'New Bag', amount: 58, date: DateTime.now()),
   ];
 
   void _addNewTransaction(
@@ -112,18 +113,33 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-              height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) *
-                  0.4,
-              child: Chart(_recentTransactions)),
-          Container(
-              height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) *
-                  0.6,
-              child: TransactionList(_userTransactions, _deleteTransaction)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Show Chart"),
+              Switch(
+                  value: _showChart,
+                  onChanged: (value) {
+                    setState(() {
+                      _showChart = value;
+                    });
+                  })
+            ],
+          ),
+          _showChart
+              ? Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height -
+                          MediaQuery.of(context).padding.top) *
+                      0.4,
+                  child: Chart(_recentTransactions))
+              : Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height -
+                          MediaQuery.of(context).padding.top) *
+                      0.6,
+                  child:
+                      TransactionList(_userTransactions, _deleteTransaction)),
         ],
       )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
