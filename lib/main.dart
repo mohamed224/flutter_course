@@ -43,12 +43,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Transaction> _userTransactions = [
-    /* Transaction(id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
-    Transaction(id: 't2', title: 'Weekly Groceries', amount: 78.5, date: DateTime.now()),
-    Transaction(id: 't3', title: 'New Bag', amount: 58, date: DateTime.now()),*/
+    Transaction(
+        id: 't1', title: 'New Shoes', amount: 69.5, date: DateTime.now()),
+    Transaction(
+        id: 't2',
+        title: 'Weekly Groceries',
+        amount: 78.5,
+        date: DateTime.now()),
+    Transaction(id: 't3', title: 'New Bag', amount: 58, date: DateTime.now()),
   ];
 
-  void _addNewTransaction(String titleValue, double amountValue , DateTime chosenDate) {
+  void _addNewTransaction(
+      String titleValue, double amountValue, DateTime chosenDate) {
     final newTx = Transaction(
         id: DateTime.now().toString(),
         title: titleValue,
@@ -81,32 +87,43 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  void  _deleteTransaction(String id){
+  void _deleteTransaction(String id) {
     setState(() {
-      _userTransactions.removeWhere((tx) =>tx.id == id);
+      _userTransactions.removeWhere((tx) => tx.id == id);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Personal Expenses',
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTransaction(context),
-          )
-        ],
+    final appBar = AppBar(
+      title: Text(
+        'Personal Expenses',
       ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _startAddNewTransaction(context),
+        )
+      ],
+    );
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Chart(_recentTransactions),
-          TransactionList(_userTransactions , _deleteTransaction),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.4,
+              child: Chart(_recentTransactions)),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.6,
+              child: TransactionList(_userTransactions, _deleteTransaction)),
         ],
       )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
